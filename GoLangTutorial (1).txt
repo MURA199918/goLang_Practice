@@ -1,0 +1,176 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+
+	x, y := 5, 6
+
+	fmt.Println("x+y=", x+y)
+	fmt.Println("x-y=", x-y)
+
+	isbool := true
+	hate := false
+
+	fmt.Println(isbool && hate)
+	fmt.Println(isbool || hate)
+
+	z := 10
+	changeValue(&z)
+	fmt.Println(z)
+
+	var name string = "Murali"
+	const pi float64 = 3.1412435
+	win := true
+
+	fmt.Println(name + " is a chill dude")
+	fmt.Printf("%.3f \n", pi)
+	fmt.Printf("%T \n", name)
+	fmt.Printf("%t \n", win)
+	fmt.Printf("%d \n", x)
+	fmt.Printf("%b \n", 25)
+	fmt.Printf("%c \n", 34)
+
+	for i := 0; i < 5; i++ {
+		fmt.Println(i)
+	}
+
+	age := 18
+	switch age {
+	case 16:
+		fmt.Println("Prepare for college")
+	case 18:
+		fmt.Println("cast vote")
+	case 20:
+		fmt.Println("get job")
+	default:
+		fmt.Println("check status")
+
+	}
+
+	EvenNum := [5]int{0, 2, 4, 6, 8}
+
+	for i, value := range EvenNum {
+		fmt.Println(value, i)
+	}
+
+	numSlice := []int{5, 4, 3, 2, 1}
+
+	sliced := numSlice[3:5]
+	fmt.Println(sliced)
+
+	slice2 := make([]int, 5, 10)
+
+	copy(slice2, numSlice)
+
+	fmt.Println(slice2)
+
+	slice3 := append(numSlice, 3, 0, -1)
+	fmt.Println(slice3)
+
+	studentAge := make(map[string]int)
+
+	studentAge["Aryya"] = 23
+	studentAge["Saurabh"] = 27
+	studentAge["Prerna"] = 21
+	studentAge["Akarti"] = 19
+	studentAge["Sahiti"] = 42
+	studentAge["Kirti"] = 22
+
+	fmt.Println(studentAge)
+	fmt.Println(len(studentAge))
+
+	superhero := map[string]map[string]string{
+		"Superman": map[string]string{
+			"RealName": "Clark Kent",
+			"City":     "Metropolis",
+		},
+
+		"Batman": map[string]string{
+			"RealName": "Bruce Wayne",
+			"City":     "Gotham City",
+		},
+	}
+
+	if temp, hero := superhero["Superman"]; hero {
+		fmt.Println(temp["RealName"], temp["City"])
+	}
+
+	num := 5
+	fmt.Println(factorial(num))
+
+	defer FirstRun()
+	SecondRun()
+
+	fmt.Println(div(3, 0))
+	fmt.Println(div(3, 5))
+	demPanic()
+
+	fmt.Println(addemup(10, 20, 30, 40, 50))
+
+	rect1 := Rectangle{10, 5}
+	fmt.Println(rect1.height)
+	fmt.Println(rect1.width)
+	fmt.Println("Area of rectangle ", rect1.area())
+
+	var sample string = "Hello, world"
+
+	for index, character := range sample {
+		fmt.Printf("The charcter %c is in position %d \n", character, index)
+	}
+
+	myslice := []byte{0x48, 0x65, 0x6C, 0x6C, 0x6f}
+	mystring := string(myslice)
+
+	fmt.Printf(mystring)
+
+	t := time.Now()
+	fmt.Printf("%02d.%02d.%4d\n", t.Day(), t.Month(), t.Year())
+}
+
+func changeValue(x *int) {
+	*x = 7
+}
+
+func factorial(num int) int {
+	if num == 0 {
+		return 1
+	}
+	return num * factorial(num-1)
+}
+
+func FirstRun()  { fmt.Println("I executed First") }
+func SecondRun() { fmt.Println("I executed Second") }
+
+func div(num1, num2 int) int {
+	defer func() {
+		fmt.Println(recover())
+	}()
+	solution := num1 / num2
+	return solution
+}
+func demPanic() {
+	defer func() {
+		fmt.Println(recover())
+	}()
+	panic("Panic")
+}
+func addemup(args ...int) int {
+	sum := 0
+	for _, value := range args {
+		sum += value
+	}
+	return sum
+}
+
+type Rectangle struct {
+	height float64
+	width  float64
+}
+
+func (rect *Rectangle) area() float64 {
+	return rect.height * rect.width
+}
