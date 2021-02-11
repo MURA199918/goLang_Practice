@@ -2,18 +2,20 @@ package service
 
 import (
 	"context"
-	"enconding/json"
+	"encoding/json"
+	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"books_example/model"
+	database "books_example/repository"
+
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"books_example/repository"
 )
 
-collection := database.ConnectDatabase()
+var collection = database.ConnectDatabase()
 
-func getBooks(w http.ResponseWriter, r *http.Request) {
+//GetBooks function
+func GetBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var books []model.Book
