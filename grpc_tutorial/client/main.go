@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"grpc_tutorial/proto"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/MURA199918/goLang_Practice/tree/master/grpc_tutorial/proto"
 
 	"github.com/golang/protobuf/proto"
 

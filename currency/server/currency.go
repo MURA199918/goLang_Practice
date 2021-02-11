@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/hashicorp/go-hclog"
-	protos "currency/protos"
+	protos "github.com/MURA199918/goLang_Practice/tree/master/currency/protos"
 )
 
 
