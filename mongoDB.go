@@ -56,7 +56,7 @@ func main() {
 
 	fmt.Println("Inserted multiple documents: ", insertManyResult.InsertedIDs)
 
-	filter := bson.D{{"name", "Ash"}}
+	filter := bson.D{{"name", "Ash"}} //convert to bson
 
 	update := bson.D{
 		{"$inc", bson.D{

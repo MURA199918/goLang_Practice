@@ -14,14 +14,14 @@ import (
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:4040", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:4040", grpc.WithInsecure()) //connect to server, connection insecure since not using https
 	if err != nil {
 		panic(err.Error())
 	}
 
 	client := proto.NewAddServiceClient(conn)
 
-	g := gin.Default()
+	g := gin.Default() //to setup API endpoints to call grpc functions, create gin server
 
 	g.GET("/add/:a/:b", func(ctx *gin.Context) {
 		a, err := strconv.ParseUint(ctx.Param("a"), 10, 64)

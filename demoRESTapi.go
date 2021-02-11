@@ -54,8 +54,8 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteArticle(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	id := vars["id"]
+	vars := mux.Vars(r) //takes all parameters
+	id := vars["id"]    //takes id from it
 
 	for index, article := range Articles {
 		if article.Id == id {

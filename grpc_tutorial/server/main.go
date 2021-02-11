@@ -9,6 +9,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
+//server can implement the interface
 type server struct{}
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 		panic(err.Error())
 	}
 
-	srv := grpc.NewServer()
+	srv := grpc.NewServer() //server to wire up all
 	proto.RegisterAddServiceServer(srv, &server{})
 	reflection.Register(srv)
 
